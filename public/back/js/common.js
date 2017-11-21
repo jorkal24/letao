@@ -1,4 +1,5 @@
 
+// 进度条
 NProgress.configure({showSpinner: false});
 
 $(function (){
@@ -9,3 +10,15 @@ $(function (){
             NProgress.done();
     })
 });
+
+// 二级下拉菜单的显示和隐藏
+$(".child").prev().on("click" , function (){
+    $(this).next().stop().slideToggle();
+});
+
+// 侧边栏的显示和隐藏
+
+$(".icon_menu").on("click" , function (){
+    $(".lt_aside").toggleClass("now");
+    $(".lt_main").toggleClass("now");
+})
