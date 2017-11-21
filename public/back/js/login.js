@@ -24,16 +24,18 @@ $(function () {
                 }
             },
             password: {
-                notEmpty: {
-                    message: "用户名不能为空"
-                },
-                stringLength: {
-                    min: 6,
-                    max: 12,
-                    message: "密码长度在6-12位"
-                },
-                callback: {
-                    message: "密码不不正确"
+                validators: {
+                    notEmpty: {
+                        message: "用户名不能为空"
+                    },
+                    stringLength: {
+                        min: 6,
+                        max: 12,
+                        message: "密码长度在6-12位"
+                    },
+                    callback: {
+                        message: "密码不不正确"
+                    }
                 }
             }
         }
