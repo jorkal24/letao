@@ -12,6 +12,19 @@ $(function () {
     })
 });
 
+// 验证用户是否登陆 
+if(location.href.indexOf("login.html") == -1){
+    $.ajax({
+        type: "get",
+        url: "/employee/checkRootLogin",
+        success: function (data){
+            if(data.error == 400) {
+                location.href = "login.html"
+            }
+        }
+    })
+}
+
 // 二级下拉菜单的显示和隐藏
 $(".child").prev().on("click", function () {
     $(this).next().stop().slideToggle();
