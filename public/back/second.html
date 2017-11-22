@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./lib/bootstrap-validator/css/bootstrapValidator.css">
     <link rel="stylesheet" href="./lib/nprogress/nprogress.css">
     <link rel="stylesheet" href="./css/common.css">
-    <title>乐淘管理系统-二级分类</title>
+    <title>乐淘管理系统-二级级分类</title>
 </head>
 
 <body>
@@ -36,8 +36,8 @@
                         分类管理
                     </a>
                     <div class="child" style="display: block">
-                        <a href="first.html">一级分类</a>
-                        <a href="second.html" class="now">二级分类</a>
+                        <a href="first.html" class="now">一级分类</a>
+                        <a href="second.html">二级分类</a>
                     </div>
                 </li>
                 <li>
@@ -64,14 +64,23 @@
                 <li>
                     <a href="#">管理系统</a>
                 </li>
-                <li class="active">首页</li>
+                <li>
+                    <a href="#">分类管理</a>
+                </li>
+                <li class="active">二级分类</li>
             </ol>
             <!-- 内容区域 -->
             <div class="lt_content">
-                
+                <!-- 添加分类按钮 -->
+
+
+                <!-- 展示分类 -->
+
+                <!-- 分页 -->
+
+
             </div>
         </div>
-
 
     </div>
 
@@ -99,12 +108,44 @@
             </div>
         </div>
     </div>
+
+    <!-- 添加分类模态框 -->
+    <div class="modal fade" tabindex="-1" id="addModal">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                    <h4 class="modal-title">添加分类</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="categoryName" placeholder="请输入一级分类的名称">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="submit" form="form" class="btn btn-primary btn_addCategory">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 模板 -->
+    
+
     <script src="./lib/jquery/jquery.js"></script>
+    <script src="./lib/artTemplate/template-web.js"></script>
     <script src="./lib/bootstrap/js/bootstrap.js"></script>
     <script src="./lib/bootstrap-validator/js/bootstrapValidator.js"></script>
+    <script src="./lib/bootstrap-paginator/bootstrap-paginator.min.js"></script>
     <script src="./lib/nprogress/nprogress.js"></script>
     <script src="./lib/echarts/echarts.min.js"></script>
     <script src="./js/common.js"></script>
+    <script src="./js/second.js"></script>
 </body>
 
 </html>

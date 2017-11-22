@@ -29,6 +29,10 @@ a:link,a:hover,a:visited,a:active {
     margin-top: 150px;
 }
 
+.mb_20 {
+    margin-bottom: 20px;
+}
+
 .panel_h4 {
     text-align: center;
 }
