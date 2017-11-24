@@ -36,8 +36,8 @@
                         分类管理
                     </a>
                     <div class="child" style="display: block">
-                        <a href="first.html" class="now">一级分类</a>
-                        <a href="second.html">二级分类</a>
+                        <a href="first.html">一级分类</a>
+                        <a href="second.html" class="now">二级分类</a>
                     </div>
                 </li>
                 <li>
@@ -72,12 +72,25 @@
             <!-- 内容区域 -->
             <div class="lt_content">
                 <!-- 添加分类按钮 -->
-
-
+                <button class="btn btn-default btn_add mb_20">添加分类</button>
                 <!-- 展示分类 -->
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th width="10%">序号</th>
+                            <th width="30%">一级分类名称</th>
+                            <th width="30%">二级分类名称</th>
+                            <th width="30%">二级分类LOGO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
+                    </tbody>
+                </table>
                 <!-- 分页 -->
-
+                <div class="text-right">
+                    <ul id="paginator"></ul>
+                </div>
 
             </div>
         </div>
@@ -109,7 +122,7 @@
         </div>
     </div>
 
-    <!-- 添加分类模态框 -->
+    <!-- 添加分类的模态框 -->
     <div class="modal fade" tabindex="-1" id="addModal">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
@@ -122,22 +135,72 @@
                 <div class="modal-body">
                     <form id="form">
                         <div class="form-group">
-                            <input type="text" class="form-control" name="categoryName" placeholder="请输入一级分类的名称">
+                            <div class="dropdown">
+                                <button id="dLabel" class="btn btn-default" type="button" data-toggle="dropdown">
+                                    <span class="dropdown_text">请输入一级分类</span>
+                                    <span class="caret"></span>
+                                </button>
+                                <input type="hidden" name="categoryId">
+                                <ul class="dropdown-menu" aria-labelledby="dLabel">
+                                    <!-- 动态渲染一级分类 -->
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="brandName" palceholeder="请输入二级分类名">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="hot" placeholder="hot?" id="hot">
+                        </div>
+                        <div class="form-group">
+                            <div class="fileupload_box">
+                                <button class="btn btn-default">上传图片</button>
+                                <input type="file" name="pic1" data-url="/category/addSecondCategoryPic" id="fileupload">
+                            </div>
+                        </div>
+
+                        <div class="form-group img_box">
+
+                            <img src="./images/none.png" width="100" height="100" alt="">
+                            <input type="hidden" name="brandLogo">
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                    <button type="submit" form="form" class="btn btn-primary btn_addCategory">提交</button>
+                    <button type="submit" form="form" class="btn btn-primary">添加</button>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- 模板 -->
-    
+    <script type="text/html" id="tpl">
+        {{each rows v i}}
+        <tr>
+            <td> {{(page - 1) * size + i + 1}} </td>
+            <td> {{v.categoryName}} </td>
+            <td> {{v.brandName}} </td>
+            <td>
+                <img src="{{v.brandLogo}}" width="50" height="50" alt="">
+            </td>
+        </tr>
+        {{/each}}
+    </script>
+
+    <!-- 一级分类模板 -->
+    <script type="text/html" id="tpl2">
+        {{each rows v i}}
+        <li>
+            <a data-id="{{v.id}}" href="javascript:;">{{v.categoryName}}</a>
+        </li>
+        {{/each}}
+    </script>
 
     <script src="./lib/jquery/jquery.js"></script>
+    <script src="./lib/jquery-fileupload/jquery.ui.widget.js"></script>
+    <script src="./lib/jquery-fileupload/jquery.fileupload.js"></script>
     <script src="./lib/artTemplate/template-web.js"></script>
     <script src="./lib/bootstrap/js/bootstrap.js"></script>
     <script src="./lib/bootstrap-validator/js/bootstrapValidator.js"></script>
