@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./lib/bootstrap-validator/css/bootstrapValidator.css">
     <link rel="stylesheet" href="./lib/nprogress/nprogress.css">
     <link rel="stylesheet" href="./css/common.css">
-    <title>乐淘管理系统-二级级分类</title>
+    <title>乐淘管理系统-产品管理</title>
 </head>
 
 <body>
@@ -37,11 +37,11 @@
                     </a>
                     <div class="child" style="display: block">
                         <a href="first.html">一级分类</a>
-                        <a href="second.html" class="now">二级分类</a>
+                        <a href="second.html">二级分类</a>
                     </div>
                 </li>
                 <li>
-                    <a href="productManage.html">
+                    <a href="productManage.html" class="now">
                         <span class="glyphicon glyphicon-tags"></span>
                         商品管理
                     </a>
@@ -64,10 +64,7 @@
                 <li>
                     <a href="#">管理系统</a>
                 </li>
-                <li>
-                    <a href="#">分类管理</a>
-                </li>
-                <li class="active">二级分类</li>
+                <li class="active">产品管理</li>
             </ol>
             <!-- 内容区域 -->
             <div class="lt_content">
@@ -77,10 +74,13 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th width="10%">序号</th>
-                            <th width="30%">一级分类名称</th>
-                            <th width="30%">二级分类名称</th>
-                            <th width="30%">二级分类LOGO</th>
+                            <td width="10%">序号</td>
+                            <td width="25%">商品名称</td>
+                            <td width="25%">商品描述</td>
+                            <td width="10%">商品库存</td>
+                            <td width="10%">商品尺寸</td>
+                            <td width="10%">商品状态</td>
+                            <td width="10%">操作</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -124,7 +124,7 @@
 
     <!-- 添加分类的模态框 -->
     <div class="modal fade" tabindex="-1" id="addModal">
-        <div class="modal-dialog modal-sm">
+        <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">
@@ -134,35 +134,58 @@
                 </div>
                 <div class="modal-body">
                     <form id="form">
+                        <!-- 二级分类名 -->
                         <div class="form-group">
                             <div class="dropdown">
                                 <button id="dLabel" class="btn btn-default" type="button" data-toggle="dropdown">
-                                    <span class="dropdown_text">请输入一级分类</span>
+                                    <span class="dropdown_text">请选择二级分类</span>
                                     <span class="caret"></span>
                                 </button>
-                                <input type="hidden" name="categoryId">
-                                <ul class="dropdown-menu" aria-labelledby="dLabel">
+                                <input type="hidden" name="brandId">
+                                <ul class="dropdown-menu">
                                     <!-- 动态渲染一级分类 -->
 
                                 </ul>
                             </div>
                         </div>
+                        <!-- 商品名称 -->
                         <div class="form-group">
-                            <input type="text" class="form-control" name="brandName" placeholder="请输入二级分类名">
+                            <input type="text" class="form-control" name="proName" placeholder="请输入商品名称">
                         </div>
+                        <!-- 商品描述 -->
+                        <div action="" class="form-group">
+                            <textarea class="form-control" rows="3" name="proDesc" placeholder="请输入商品的描述"></textarea>
+                        </div>
+                        <!-- 商品库存 -->
                         <div class="form-group">
-                            <input type="text" name="hot" placeholder="hot?" id="hot">
+                            <input type="text" class="form-control" name="num" placeholder="请输入商品的库存">
                         </div>
+                        <!-- 商品的尺码 -->
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="size" placeholder="请输入商品的尺码32-46">
+                        </div>
+                        <!-- 商品的原价 -->
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="oldPrice" placeholder="请输入商品的原价">
+                        </div>
+                        <!-- 商品的价格 -->
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="price" placeholder="请输入商品的价格">
+                            <input type="hidden" name="statu" value="1">
+                        </div>
+                        <!-- 商品图片 -->
                         <div class="form-group">
                             <div class="fileupload_box">
                                 <button class="btn btn-default">上传图片</button>
-                                <input type="file" name="pic1" data-url="/category/addSecondCategoryPic" id="fileupload">
+                                <input type="file" name="pic1" data-url="/product/addProductPic" id="fileupload" multiple>
                             </div>
                         </div>
 
                         <div class="form-group img_box">
 
+                            <!-- <img src="./images/none.png" width="100" height="100" alt="">
                             <img src="./images/none.png" width="100" height="100" alt="">
+                            <img src="./images/none.png" width="100" height="100" alt=""> -->
                             <input type="hidden" name="brandLogo">
                         </div>
                     </form>
@@ -175,27 +198,35 @@
         </div>
     </div>
 
-    <!-- 模板 -->
+    <!-- 二级分类名模板 -->
+    <script type="text/html" id="tpl1" >
+        {{each rows v i}}
+            <li><a href="javascript:;" data-id="{{v.id}}"> {{v.brandName}} </a></li>
+        {{/each}}
+    </script>
+
+    <!-- 渲染页面模板 -->
     <script type="text/html" id="tpl">
+
         {{each rows v i}}
         <tr>
-            <td> {{(page - 1) * size + i + 1}} </td>
-            <td> {{v.categoryName}} </td>
-            <td> {{v.brandName}} </td>
+            <td> {{ (page - 1) * size + i +1 }} </td>
+            <td> {{v.proName}} </td>
+            <td> {{v.prodesc}} </td>
+            <td> {{v.num}} </td>
+            <td> {{v.size}} </td>
+            <td> {{v.statu}} </td>
             <td>
-                <img src="{{v.brandLogo}}" width="50" height="50" alt="">
+                {{if v.statu == 1}}
+                <button class="btn btn-default btn-danger">下架</button>
+                {{else if v.statu == 0}}
+                <button class="btn btn-default btn-success">上架</button>
+                {{/if}}
             </td>
         </tr>
         {{/each}}
     </script>
 
-    <!-- 一级分类模板 -->
-    <script type="text/html" id="tpl2">
-        {{each rows v i}}
-        <li>
-            <a data-id="{{v.id}}" href="javascript:;">{{v.categoryName}}</a>
-        </li>
-        {{/each}}
     </script>
 
     <script src="./lib/jquery/jquery.js"></script>
@@ -208,7 +239,7 @@
     <script src="./lib/nprogress/nprogress.js"></script>
     <script src="./lib/echarts/echarts.min.js"></script>
     <script src="./js/common.js"></script>
-    <script src="./js/second.js"></script>
+    <script src="./js/productManage.js"></script>
 </body>
 
 </html>

@@ -41,12 +41,14 @@ a:link,a:hover,a:visited,a:active {
 .lt_aside {
     width: 180px;
     height: 100%;
-    position: absolute;
+    position: fixed;
+    z-index:99;
     top: 0px;
     left: 0px;
     background-color: #222d32;
     transition: all 1s;
 }
+
 
 .lt_aside.now {
     left: -180px;
@@ -109,6 +111,7 @@ a:link,a:hover,a:visited,a:active {
     height: 100%;
     width: 100%;
     transition: all 1s;
+    padding-top: 70px;
 }
 
 .lt_main.now {
@@ -116,11 +119,22 @@ a:link,a:hover,a:visited,a:active {
 }
 
 .lt_main .lt-topbar {
-    padding: 0 20px;
+    padding-left: 200px;
+    padding-right: 20px;
     height: 50px;
     background-color: #3c8dbc;
-    margin-bottom: 20px;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    z-index: 98;
+    transition: all 1s;
 }
+
+.lt_main .lt-topbar.now {
+    padding-left: 20px;
+}
+
 .lt_main .lt-topbar a {
     height: 50px;
     color: #fff;
