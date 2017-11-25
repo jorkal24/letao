@@ -1,0 +1,39 @@
+@charset "UTF-8";
+.lt_sort {
+    background-color: #eee
+}
+
+.lt_sort a {
+    float: left;
+    display: block;
+    width: 25%;
+    font-size: 14px;
+    color: #666;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+
+.lt_sort a.now {
+    color: darkorange;
+}
+
+.lt_product .loading {
+    width: 40px;
+    height: 40px;
+    border: 3px solid blue;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 200px;
+    animation: loading 1s ease-in-out infinite;
+}
+
+@keyframes loading {
+    from {
+        transform: translate(-50%) rotate(0deg);
+    }
+    to{
+        transform: translateX(-50%) rotate(360deg);
+    }
+}
