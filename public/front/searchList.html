@@ -84,11 +84,11 @@
         {{/if}}
         {{each data v i}}
         <a href="product.html?productId={{v.id}}" class="item">
-            <img src="./images/product.jpg" alt="">
+            <img src={{v.pic[0].picAddr}} alt="">
             <p class="proName mui-ellipsis-2">{{v.proName}}</p>
             <p>
                 <span class="price">&yen;{{v.price}}</span>
-                <span class="price">&yen;{{v.oldPice}}</span>
+                <span class="oldPrice">&yen;{{v.oldPrice}}</span>
             </p>
             <button class="mui-btn mui-btn-blue">立即购买</button>
         </a>

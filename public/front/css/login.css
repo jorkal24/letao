@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+.mui-button-row {
+    border-bottom: none;    
+}
+
+.lt_register {
+    height: 30px;
+    line-height: 30px;
+}
+
+.lt_register a {
+    font-size: 12px;
+}

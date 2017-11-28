@@ -56,3 +56,7 @@
     padding: 10px;
     border-top: 1px solid #ccc;
   }
+  
+  .lt_size span.now {
+      background-color: blue;
+  }

@@ -10,7 +10,7 @@ mui( '.mui-slider' ).slider( {
 var tools = {
     getSearchObj: function (){
         var search = location.search;
-        search = encodeURI(search);
+        search = decodeURI(search);
         search = search.slice(1);
         var arr = search.split("&");
 
